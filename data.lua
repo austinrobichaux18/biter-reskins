@@ -5,7 +5,7 @@ end
 
 ---@param enemy_unit data.UnitPrototype
 local function update_unit(enemy_unit, scale, filesuffix)
-    local filename = "__enemy-reskins__/graphics/entity/" .. filesuffix
+    local filename = "__enemy-reskins__/graphics/enemies/" .. filesuffix
     if not enemy_unit then return end
 
     local anim = {
@@ -53,7 +53,7 @@ end
 
 ---@param enemy_spawner data.EnemySpawnerPrototype
 local function update_spawner(enemy_spawner, scale, filesuffix)
-    local filename = "__enemy-reskins__/graphics/entity/" .. filesuffix
+    local filename = "__enemy-reskins__/graphics/spawners/" .. filesuffix
     if not enemy_spawner then return end
 
     local anim = {
@@ -70,6 +70,30 @@ local function update_spawner(enemy_spawner, scale, filesuffix)
         }
     }
     enemy_spawner.graphics_set.animations = anim
+
+    local corpse = data.raw["corpse"][enemy_spawner.corpse]
+    local corpse_animation = {
+        layers = {
+            {
+                --replace the .png part with _corpse.png
+                filename = filename:gsub("%.png$", "_corpse.png"),
+                width = 64,
+                height = 64,
+                frame_count = 1,
+                line_length = 1,
+                shift = util.by_pixel(0, 0),
+                scale = scale_modifier(scale, "enemy-spawner-scale-setting") / 2,
+                tint = { 1, 1, 1, 0.5 }
+            },
+
+        }
+    }
+    corpse.time_before_removed = 3600
+    corpse.animation = corpse_animation
+    corpse.decay_animation = corpse_animation
+
+    -- Fix direction-related data from vanilla corpse
+    corpse.direction_shuffle = nil
 end
 
 
@@ -116,15 +140,22 @@ end
 
 local biter_spawner_skin_setting = settings.startup["biter-spawner-skin-setting"].value
 local biter_spawner = data.raw["unit-spawner"]["biter-spawner"]
-if biter_spawner_skin_setting == "hut" then
-    update_spawner(biter_spawner, 5, "biter_base.png")
+if biter_spawner_skin_setting == "grey-tent" then
+    update_spawner(biter_spawner, 5, "grey_tent.png")
+else
+    if biter_spawner_skin_setting == "horn-tent" then
+        update_spawner(biter_spawner, 5, "horn_tent.png")
+    end
 end
-
 
 local spitter_spawner_skin_setting = settings.startup["spitter-spawner-skin-setting"].value
 local spitter_spawner = data.raw["unit-spawner"]["spitter-spawner"]
-if spitter_spawner_skin_setting == "hut" then
-    update_spawner(spitter_spawner, 5, "biter_base.png")
+if spitter_spawner_skin_setting == "grey-tent" then
+    update_spawner(spitter_spawner, 5, "grey_tent.png")
+else
+    if spitter_spawner_skin_setting == "horn-tent" then
+        update_spawner(spitter_spawner, 5, "horn_tent.png")
+    end
 end
 
 local biter_skin_setting = settings.startup["biter-skin-setting"].value

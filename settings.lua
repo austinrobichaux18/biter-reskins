@@ -33,21 +33,24 @@ data:extend({
         type = "string-setting",
         name = "biter-spawner-skin-setting",
         setting_type = "startup",
-        default_value = "hut",
+        default_value = "horn-tent",
         allowed_values = {
-            "hut",
+            "horn-tent",
+            "grey-tent",
             "default"
         },
         order = "a"
     }
-})data:extend({
+})
+data:extend({
     {
         type = "string-setting",
         name = "spitter-spawner-skin-setting",
         setting_type = "startup",
-        default_value = "hut",
+        default_value = "grey-tent",
         allowed_values = {
-            "hut",
+            "horn-tent",
+            "grey-tent",
             "default"
         },
         order = "a"
