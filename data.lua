@@ -1,3 +1,8 @@
+local function scale_modifier(scale, setting_name)
+    local scale_setting_multiplier = settings.startup[setting_name].value
+    return scale * scale_setting_multiplier
+end
+
 ---@param enemy_unit data.UnitPrototype
 local function update_unit(enemy_unit, scale, filesuffix)
     local filename = "__enemy-reskins__/graphics/entity/" .. filesuffix
@@ -12,7 +17,7 @@ local function update_unit(enemy_unit, scale, filesuffix)
                 frame_count = 8,
                 line_length = 3,
                 shift = util.by_pixel(0, 0),
-                scale = scale
+                scale = scale_modifier(scale, "enemy-scale-setting")
             }
         }
     }
@@ -35,7 +40,7 @@ local function update_unit(enemy_unit, scale, filesuffix)
                 direction_count = 4,
                 line_length = 2,
                 shift = util.by_pixel(0, 0),
-                scale = scale
+                scale = scale_modifier(scale, "enemy-scale-setting")
             }
         }
     }
@@ -45,6 +50,28 @@ local function update_unit(enemy_unit, scale, filesuffix)
     -- Fix direction-related data from vanilla corpse
     corpse.direction_shuffle = nil
 end
+
+---@param enemy_spawner data.EnemySpawnerPrototype
+local function update_spawner(enemy_spawner, scale, filesuffix)
+    local filename = "__enemy-reskins__/graphics/entity/" .. filesuffix
+    if not enemy_spawner then return end
+
+    local anim = {
+        layers = {
+            {
+                filename = filename,
+                width = 64,
+                height = 64,
+                frame_count = 1,
+                line_length = 1,
+                shift = util.by_pixel(0, 0),
+                scale = scale_modifier(scale, "enemy-spawner-scale-setting")
+            }
+        }
+    }
+    enemy_spawner.graphics_set.animations = anim
+end
+
 
 
 local function update_unit_to_goblin_skin(biter, scale)
@@ -85,6 +112,19 @@ local function tint(biter, color, brightness)
         anim.tint = final_color
         anim.tint_as_overlay = true
     end
+end
+
+local biter_spawner_skin_setting = settings.startup["biter-spawner-skin-setting"].value
+local biter_spawner = data.raw["unit-spawner"]["biter-spawner"]
+if biter_spawner_skin_setting == "hut" then
+    update_spawner(biter_spawner, 5, "biter_base.png")
+end
+
+
+local spitter_spawner_skin_setting = settings.startup["spitter-spawner-skin-setting"].value
+local spitter_spawner = data.raw["unit-spawner"]["spitter-spawner"]
+if spitter_spawner_skin_setting == "hut" then
+    update_spawner(spitter_spawner, 5, "biter_base.png")
 end
 
 local biter_skin_setting = settings.startup["biter-skin-setting"].value

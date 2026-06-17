@@ -8,6 +8,7 @@ data:extend({
             "goblins-and-orcs",
             "goblins",
             "orcs",
+            "default"
         },
         order = "a"
     }
@@ -22,7 +23,55 @@ data:extend({
             "piggy-and-eyes",
             "piggy",
             "eyes",
+            "default"
         },
+        order = "a"
+    }
+})
+data:extend({
+    {
+        type = "string-setting",
+        name = "biter-spawner-skin-setting",
+        setting_type = "startup",
+        default_value = "hut",
+        allowed_values = {
+            "hut",
+            "default"
+        },
+        order = "a"
+    }
+})data:extend({
+    {
+        type = "string-setting",
+        name = "spitter-spawner-skin-setting",
+        setting_type = "startup",
+        default_value = "hut",
+        allowed_values = {
+            "hut",
+            "default"
+        },
+        order = "a"
+    }
+})
+data:extend({
+    {
+        type = "double-setting",
+        name = "enemy-scale-setting",
+        setting_type = "startup",
+        default_value = 1.0,
+        minimum_value = 0.1,
+        maximum_value = 10,
+        order = "a"
+    }
+})
+data:extend({
+    {
+        type = "double-setting",
+        name = "enemy-spawner-scale-setting",
+        setting_type = "startup",
+        default_value = 1.0,
+        minimum_value = 0.1,
+        maximum_value = 10,
         order = "a"
     }
 })
