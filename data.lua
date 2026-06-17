@@ -118,6 +118,20 @@ else
 
         update_unit_to_goblin_skin(behemoth_biter, 1.5)
         tint(behemoth_biter, { 0.35, 0.45, 0.65, 1 })
+    else
+        if biter_skin_setting == "orcs" then
+            update_unit_to_orc_skin(small_biter, 0.3)
+            tint(small_biter, { 0.85, 0.7, 0.25, 1 }, .6)
+
+            update_unit_to_orc_skin(medium_biter, 0.5)
+            tint(medium_biter, { 0.75, 0.30, 0.45, 1 })
+
+            update_unit_to_orc_skin(big_biter, 1)
+            tint(big_biter, { 0.85, 0.7, 0.25, 1 }, .5)
+
+            update_unit_to_orc_skin(behemoth_biter, 1)
+            tint(behemoth_biter, { 0.35, 0.45, 0.65, 1 })
+        end
     end
 end
 
@@ -127,30 +141,44 @@ local medium_spitter = data.raw["unit"]["medium-spitter"]
 local big_spitter = data.raw["unit"]["big-spitter"]
 local behemoth_spitter = data.raw["unit"]["behemoth-spitter"]
 
-if spitter_skin_setting == "piggy" then
+if spitter_skin_setting == "piggy-and-eyes" then
     update_unit_to_piggy_skin(small_spitter, 0.3)
     tint(small_spitter, { 0.85, 0.7, 0.25, 1 }, .6)
 
     update_unit_to_piggy_skin(medium_spitter, 0.5)
-    tint(medium_spitter, { 0.75, 0.30, 0.45, 1 })
+    tint(medium_spitter, { 0.35, 0.45, 0.65, 1 })
 
-    update_unit_to_piggy_skin(big_spitter, .6)
-    tint(big_spitter, { 0.25, 0.35, 0.80, 1 })
+    update_unit_to_eye_skin(big_spitter, .6)
 
-    update_unit_to_piggy_skin(behemoth_spitter, .8)
+    update_unit_to_eye_skin(behemoth_spitter, .8)
     tint(behemoth_spitter, { 0.35, 0.45, 0.65, 1 })
 else
-    if spitter_skin_setting == "eyes" then
+    if spitter_skin_setting == "piggy" then
         update_unit_to_piggy_skin(small_spitter, 0.3)
         tint(small_spitter, { 0.85, 0.7, 0.25, 1 }, .6)
 
         update_unit_to_piggy_skin(medium_spitter, 0.5)
-        tint(medium_spitter, { 0.35, 0.45, 0.65, 1 })
+        tint(medium_spitter, { 0.75, 0.30, 0.45, 1 })
 
-        update_unit_to_eye_skin(big_spitter, .6)
+        update_unit_to_piggy_skin(big_spitter, .6)
+        tint(big_spitter, { 0.25, 0.35, 0.80, 1 })
 
-        update_unit_to_eye_skin(behemoth_spitter, .8)
+        update_unit_to_piggy_skin(behemoth_spitter, .8)
         tint(behemoth_spitter, { 0.35, 0.45, 0.65, 1 })
+    else
+        if spitter_skin_setting == "eyes" then
+            update_unit_to_eye_skin(small_spitter, 0.3)
+            tint(small_spitter, { 0.85, 0.7, 0.25, 1 }, .6)
+
+            update_unit_to_eye_skin(medium_spitter, 0.5)
+            tint(medium_spitter, { 0.75, 0.30, 0.45, 1 })
+
+            update_unit_to_eye_skin(big_spitter, .6)
+            tint(big_spitter, { 0.25, 0.35, 0.80, 1 })
+
+            update_unit_to_eye_skin(behemoth_spitter, .8)
+            tint(behemoth_spitter, { 0.35, 0.45, 0.65, 1 })
+        end
     end
 end
 
