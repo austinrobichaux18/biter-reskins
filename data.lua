@@ -1,6 +1,6 @@
 ---@param enemy_unit data.UnitPrototype
 local function update_unit(enemy_unit, scale, filesuffix)
-    local filename = "__biter-reskins__/graphics/entity/small-biter/" .. filesuffix
+    local filename = "__enemy-reskins__/graphics/entity/" .. filesuffix
     if not enemy_unit then return end
 
     local anim = {
