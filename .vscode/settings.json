@@ -23,5 +23,9 @@
     "Lua.diagnostics.disable": [
         "lowercase-global"
     ],
-    "Lua.runtime.version": "Lua 5.2"
+    "Lua.runtime.version": "Lua 5.2",
+    "Lua.workspace.userThirdParty": [
+        "c:\\Users\\Austin\\AppData\\Roaming\\Code\\User\\workspaceStorage\\779a9cd5033a570e5d144f797e1b37e3\\justarandomgeek.factoriomod-debug\\sumneko-3rd"
+    ],
+    "Lua.workspace.checkThirdParty": "ApplyInMemory"
 }
