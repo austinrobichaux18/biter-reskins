@@ -1,7 +1,7 @@
----@param biter data.UnitPrototype
-local function update_unit(biter, scale, filesuffix)
+---@param enemy_unit data.UnitPrototype
+local function update_unit(enemy_unit, scale, filesuffix)
     local filename = "__biter-reskins__/graphics/entity/small-biter/" .. filesuffix
-    if not biter then return end
+    if not enemy_unit then return end
 
     local anim = {
         layers = {
@@ -17,13 +17,13 @@ local function update_unit(biter, scale, filesuffix)
         }
     }
 
-    biter.attack_parameters.animation = anim
-    biter.run_animation = anim
+    enemy_unit.attack_parameters.animation = anim
+    enemy_unit.run_animation = anim
 
     -- IMPORTANT: remove vanilla frame sequencing (it causes out-of-range errors)
-    biter.alternative_attacking_frame_sequence = nil
+    enemy_unit.alternative_attacking_frame_sequence = nil
 
-    local corpse = data.raw["corpse"][biter.corpse]
+    local corpse = data.raw["corpse"][enemy_unit.corpse]
     local corpse_animation = {
         layers = {
             {
@@ -159,20 +159,20 @@ end
 
 --opt a
 
-local function evolution_tint(scale)
-    -- scale expected ~0.3 to ~1.5
-    local t = math.min(math.max(scale, 0.3), 1.5)
+-- local function evolution_tint(scale)
+--     -- scale expected ~0.3 to ~1.5
+--     local t = math.min(math.max(scale, 0.3), 1.5)
 
-    -- normalized factor
-    local f = (t - 0.3) / (1.5 - 0.3)
+--     -- normalized factor
+--     local f = (t - 0.3) / (1.5 - 0.3)
 
-    return {
-        0.85 - f * 0.4, -- red decreases slightly
-        0.75 - f * 0.2, -- green decreases slightly
-        0.35 + f * 0.3, -- blue increases slightly
-        1
-    }
-end
+--     return {
+--         0.85 - f * 0.4, -- red decreases slightly
+--         0.75 - f * 0.2, -- green decreases slightly
+--         0.35 + f * 0.3, -- blue increases slightly
+--         1
+--     }
+-- end
 
 -- -- usage
 -- local small_biter = data.raw["unit"]["small-biter"]
