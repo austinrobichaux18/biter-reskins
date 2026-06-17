@@ -1,0 +1,9 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2026-06-17
+  Info:
+    - initial commit
+  Features:
+    - add eyes and corpses
+  Bugfixes:
+    - fix corpses
