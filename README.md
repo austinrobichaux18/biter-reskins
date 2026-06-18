@@ -10,6 +10,8 @@ This is a section of things I plan to add to this mod. This section will likely 
 - Clean code and make it more modular and dynamic so I can add lots more skins easily
 - Fix the damn spinning
 - Crystal theme biters
+- Zombie Theme
+- Ghost Theme
 - portal 2 turret worm
 - new worm death image
 - fix worm death animation
