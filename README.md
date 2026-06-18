@@ -4,3 +4,10 @@
 # Enemy Reskins
 
 This is a factorio mod that reskins various enemies
+
+# To Add
+- Fix the damn spinning
+- Crystal theme biters
+- portal 2 turret worm
+- new worm death image
+- fix worm death animation

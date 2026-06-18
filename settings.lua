@@ -28,6 +28,20 @@ data:extend({
         order = "a"
     }
 })
+
+data:extend({
+    {
+        type = "string-setting",
+        name = "worm-skin-setting",
+        setting_type = "startup",
+        default_value = "zerg",
+        allowed_values = {
+            "zerg",
+            "default"
+        },
+        order = "a"
+    }
+})
 data:extend({
     {
         type = "string-setting",
