@@ -12,6 +12,9 @@ This is a section of things I plan to add to this mod. This section will likely 
 - Crystal theme biters
 - Zombie Theme
 - Ghost Theme
+- Llamas for spitters to spit at players
+- Dogs/Cats for biters?
+- FAMILY FRIENDLY? Some sort of bubbly childish skin set to make them look nice and friendly 
 - portal 2 turret worm
 - new worm death image
 - fix worm death animation
