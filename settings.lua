@@ -1,15 +1,12 @@
+require('helpers/constants')
+
 data:extend({
     {
         type = "string-setting",
         name = "biter-skin-setting",
         setting_type = "startup",
-        default_value = "goblins-and-orcs",
-        allowed_values = {
-            "goblins-and-orcs",
-            "goblins",
-            "orcs",
-            "default"
-        },
+        default_value = unit_default_skin_biter,
+        allowed_values = unit_skins,
         order = "a"
     }
 })
@@ -18,13 +15,8 @@ data:extend({
         type = "string-setting",
         name = "spitter-skin-setting",
         setting_type = "startup",
-        default_value = "piggy-and-eyes",
-        allowed_values = {
-            "piggy-and-eyes",
-            "piggy",
-            "eyes",
-            "default"
-        },
+        default_value = unit_default_skin_spitter,
+        allowed_values = unit_skins,
         order = "a"
     }
 })
@@ -34,11 +26,8 @@ data:extend({
         type = "string-setting",
         name = "worm-skin-setting",
         setting_type = "startup",
-        default_value = "zerg",
-        allowed_values = {
-            "zerg",
-            "default"
-        },
+        default_value = worm_default_skin,
+        allowed_values = worm_skins,
         order = "a"
     }
 })
@@ -47,12 +36,8 @@ data:extend({
         type = "string-setting",
         name = "biter-spawner-skin-setting",
         setting_type = "startup",
-        default_value = "horn-tent",
-        allowed_values = {
-            "horn-tent",
-            "grey-tent",
-            "default"
-        },
+        default_value = spawner_default_skin_biter,
+        allowed_values = spawner_skins,
         order = "a"
     }
 })
@@ -61,12 +46,8 @@ data:extend({
         type = "string-setting",
         name = "spitter-spawner-skin-setting",
         setting_type = "startup",
-        default_value = "grey-tent",
-        allowed_values = {
-            "horn-tent",
-            "grey-tent",
-            "default"
-        },
+        default_value = spawner_default_skin_spitter,
+        allowed_values = spawner_skins,
         order = "a"
     }
 })

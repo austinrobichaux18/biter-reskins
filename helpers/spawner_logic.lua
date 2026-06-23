@@ -1,10 +1,7 @@
 require('helpers/common')
 
-spitter_spawner_skin_setting = settings.startup["spitter-spawner-skin-setting"].value
-spitter_spawner = data.raw["unit-spawner"]["spitter-spawner"]
-
-biter_spawner_skin_setting = settings.startup["biter-spawner-skin-setting"].value
 biter_spawner = data.raw["unit-spawner"]["biter-spawner"]
+spitter_spawner = data.raw["unit-spawner"]["spitter-spawner"]
 
 ---@param enemy_spawner data.EnemySpawnerPrototype
 function update_spawner(enemy_spawner, scale, filesuffix)

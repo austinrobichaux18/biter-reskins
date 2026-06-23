@@ -1,4 +1,4 @@
-require('Helpers/common')
+require('helpers/common')
 
 worm_skin_setting = settings.startup["worm-skin-setting"].value
 small_worm = data.raw["turret"]["small-worm-turret"]
@@ -59,6 +59,9 @@ local function update_worm(worm, scale, filesuffix)
 end
 
 
-function update_worm_to_turret_skin(biter, scale)
-    update_worm(biter, scale, "turret.png")
+function set_all_worms(worm_skin_setting)
+    update_worm(small_worm, 1, worm_skin_setting .. ".png")
+    update_worm(medium_worm, 1.2, worm_skin_setting .. ".png")
+    update_worm(big_worm, 1.4, worm_skin_setting .. ".png")
+    update_worm(behemoth_worm, 2, worm_skin_setting .. ".png")
 end

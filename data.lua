@@ -3,21 +3,15 @@ require('helpers/spawner_logic')
 require('helpers/worm_logic')
 require('helpers/unit_logic')
 
-if biter_spawner_skin_setting == "grey-tent" then
-    update_spawner(biter_spawner, 5, "grey_tent.png")
-else
-    if biter_spawner_skin_setting == "horn-tent" then
-        update_spawner(biter_spawner, 5, "horn_tent.png")
-    end
-end
 
-if spitter_spawner_skin_setting == "grey-tent" then
-    update_spawner(spitter_spawner, 5, "grey_tent.png")
-else
-    if spitter_spawner_skin_setting == "horn-tent" then
-        update_spawner(spitter_spawner, 5, "horn_tent.png")
-    end
-end
+spitter_spawner_skin_setting = settings.startup["spitter-spawner-skin-setting"].value
+biter_spawner_skin_setting = settings.startup["biter-spawner-skin-setting"].value
+update_spawner(biter_spawner, 5, biter_spawner_skin_setting .. ".png")
+update_spawner(spitter_spawner, 5, spitter_spawner_skin_setting .. ".png")
+
+worm_skin_setting = settings.startup["worm-skin-setting"].value
+set_all_worms(worm_skin_setting)
+
 
 if biter_skin_setting == "goblins-and-orcs" then
     update_unit_to_goblin_skin(small_biter, 0.3)
@@ -102,12 +96,7 @@ else
     end
 end
 
-if worm_skin_setting == "zerg" then
-    update_worm_to_turret_skin(small_worm, 1)
-    update_worm_to_turret_skin(medium_worm, 1.2)
-    update_worm_to_turret_skin(big_worm, 1.4)
-    update_worm_to_turret_skin(behemoth_worm, 2)
-end
+
 
 
 -- scary
