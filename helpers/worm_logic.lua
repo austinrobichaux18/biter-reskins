@@ -8,7 +8,7 @@ behemoth_worm = data.raw["turret"]["behemoth-worm-turret"]
 
 ---@param worm data.TurretPrototype
 local function update_worm(worm, scale, filesuffix)
-    local filename = "__enemy-reskins__/graphics/enemies/" .. filesuffix
+    local filename = "__enemy-reskins__/graphics/worms/" .. filesuffix
     if not worm then return end
 
     local anim = {

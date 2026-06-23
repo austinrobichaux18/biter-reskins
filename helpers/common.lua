@@ -1,3 +1,5 @@
+test ={}
+
 function scale_modifier(scale, setting_name)
     local scale_setting_multiplier = settings.startup[setting_name].value
     return scale * scale_setting_multiplier

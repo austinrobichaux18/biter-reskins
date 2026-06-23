@@ -14,7 +14,7 @@ behemoth_biter = data.raw["unit"]["behemoth-biter"]
 
 ---@param enemy_unit data.UnitPrototype
 local function update_unit(enemy_unit, scale, filesuffix)
-    local filename = "__enemy-reskins__/graphics/enemies/" .. filesuffix
+    local filename = "__enemy-reskins__/graphics/units/" .. filesuffix
     if not enemy_unit then return end
 
     local anim = {
