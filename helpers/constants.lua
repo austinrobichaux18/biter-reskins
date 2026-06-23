@@ -10,10 +10,17 @@ spitter_default_skin_medium_spitter = "piggy"
 spitter_default_skin_big_spitter = "eye"
 spitter_default_skin_behemoth_spitter = "eye"
 
-spawner_skins = { 'grey-tent', 'horn-tent', 'default' }
-spawner_default_skin_biter = 'horn-tent'
-spawner_default_skin_spitter = 'grey-tent'
 
 worm_skins = { 'zerg', 'portal2', 'default' }
-worm_default_skin = 'portal2'
+
+worm_default_skin_small = "portal2"
+worm_default_skin_medium = "portal2"
+worm_default_skin_big = "portal2"
+worm_default_skin_behemoth = "portal2"
+
+
+spawner_skins = { 'grey-tent', 'horn-tent', 'default' }
+
+spawner_default_skin_biter = 'horn-tent'
+spawner_default_skin_spitter = 'grey-tent'
 

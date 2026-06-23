@@ -1,14 +1,14 @@
 require('helpers/common')
 
-small_spitter = data.raw["unit"]["small-spitter"]
-medium_spitter = data.raw["unit"]["medium-spitter"]
-big_spitter = data.raw["unit"]["big-spitter"]
-behemoth_spitter = data.raw["unit"]["behemoth-spitter"]
-
 small_biter = data.raw["unit"]["small-biter"]
 medium_biter = data.raw["unit"]["medium-biter"]
 big_biter = data.raw["unit"]["big-biter"]
 behemoth_biter = data.raw["unit"]["behemoth-biter"]
+
+small_spitter = data.raw["unit"]["small-spitter"]
+medium_spitter = data.raw["unit"]["medium-spitter"]
+big_spitter = data.raw["unit"]["big-spitter"]
+behemoth_spitter = data.raw["unit"]["behemoth-spitter"]
 
 ---@param enemy_unit data.UnitPrototype
 local function update_unit(enemy_unit, scale, filesuffix)

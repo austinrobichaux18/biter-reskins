@@ -1,20 +1,9 @@
-require('helpers/common')
 require('helpers/spawner_logic')
 require('helpers/worm_logic')
 require('helpers/unit_logic')
 
-
-biter_spawner_skin_setting = settings.startup["biter-spawner-skin-setting"].value
-update_spawner(biter_spawner, 3, biter_spawner_skin_setting .. ".png")
-
-
-spitter_spawner_skin_setting = settings.startup["spitter-spawner-skin-setting"].value
-update_spawner(spitter_spawner, 3, spitter_spawner_skin_setting .. ".png")
-
-
-worm_skin_setting = settings.startup["worm-skin-setting"].value
-set_all_worms(worm_skin_setting)
-
+set_spawners()
+set_all_worms()
 set_biters()
 set_spitters()
 

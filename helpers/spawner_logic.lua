@@ -47,3 +47,12 @@ function update_spawner(enemy_spawner, scale, filesuffix)
     -- Fix direction-related data from vanilla corpse
     corpse.direction_shuffle = nil
 end
+
+function set_spawners()
+    biter_spawner_skin_setting = settings.startup["biter-spawner-skin-setting"].value
+    update_spawner(biter_spawner, 3, biter_spawner_skin_setting .. ".png")
+
+
+    spitter_spawner_skin_setting = settings.startup["spitter-spawner-skin-setting"].value
+    update_spawner(spitter_spawner, 3, spitter_spawner_skin_setting .. ".png")
+end

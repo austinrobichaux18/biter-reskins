@@ -30,18 +30,8 @@ data:extend({
     }
 })
 data:extend({
-    {
-        type = "string-setting",
-        name = "worm-skin-setting",
-        setting_type = "startup",
-        default_value = worm_default_skin,
-        allowed_values = worm_skins,
-        order = "a"
-    }
-})
-data:extend({
     -- =====================
-    -- BITERS
+    -- Biters
     -- =====================
     {
         type = "string-setting",
@@ -77,7 +67,7 @@ data:extend({
     },
 
     -- =====================
-    -- SPITTERS
+    -- Spitters
     -- =====================
     {
         type = "string-setting",
@@ -111,9 +101,44 @@ data:extend({
         allowed_values = unit_skins,
         order = "b[spitters]-04"
     },
+    -- =====================
+    -- Worms
+    -- =====================
+    {
+        type = "string-setting",
+        name = "small-worm-skin-setting",
+        setting_type = "startup",
+        default_value = worm_default_skin_small,
+        allowed_values = worm_skins,
+        order = "c[worm]-01"
+    },
+    {
+        type = "string-setting",
+        name = "medium-worm-skin-setting",
+        setting_type = "startup",
+        default_value = worm_default_skin_medium,
+        allowed_values = worm_skins,
+        order = "c[worm]-02"
+    },
+    {
+        type = "string-setting",
+        name = "big-worm-skin-setting",
+        setting_type = "startup",
+        default_value = worm_default_skin_big,
+        allowed_values = worm_skins,
+        order = "c[worm]-03"
+    },
+    {
+        type = "string-setting",
+        name = "behemoth-worm-skin-setting",
+        setting_type = "startup",
+        default_value = worm_default_skin_behemoth,
+        allowed_values = worm_skins,
+        order = "c[worm]-04"
+    },
 
     -- =====================
-    -- SCALE SETTINGS
+    -- Scale Settings
     -- =====================
     {
         type = "double-setting",
