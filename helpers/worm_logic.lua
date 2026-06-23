@@ -35,27 +35,27 @@ local function update_worm(worm, scale, filesuffix)
     worm.starting_attack_animation = anim
     worm.attack_parameters.animation = anim
     worm.prepared_alternative_animation = anim
+    
+    -- local corpse = data.raw["corpse"][worm.corpse]
+    -- local corpse_animation = {
+    --     layers = {
+    --         {
+    --             filename = filename:gsub("%.png$", "_corpse.png"),
+    --             width = 128,
+    --             height = 128,
+    --             frame_count = 8,
+    --             line_length = 3,
+    --             direction_count = 1,
+    --             shift = util.by_pixel(0, 0),
+    --             scale = scale_modifier(scale, "enemy-scale-setting") / 2,
+    --             tint = { 1, 1, 1, 0.5 }
+    --         }
+    --     }
+    -- }
 
-    local corpse = data.raw["corpse"][worm.corpse]
-    local corpse_animation = {
-        layers = {
-            {
-                filename = filename:gsub("%.png$", "_corpse.png"),
-                width = 128,
-                height = 128,
-                frame_count = 8,
-                line_length = 3,
-                direction_count = 1,
-                shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-scale-setting") / 2,
-                tint = { 1, 1, 1, 0.5 }
-            }
-        }
-    }
-
-    corpse.animation = corpse_animation
-    corpse.decay_animation = table.deepcopy(corpse_animation) -- doesn't work without deep copy. Idk why. OK now it doesnt work with or without. shrug
-    corpse.direction_shuffle = nil
+    -- corpse.animation = corpse_animation
+    -- corpse.decay_animation = table.deepcopy(corpse_animation) -- doesn't work without deep copy. Idk why. OK now it doesnt work with or without. shrug
+    -- corpse.direction_shuffle = nil
 end
 
 
