@@ -1,360 +1,40 @@
-local function scale_modifier(scale, setting_name)
-    local scale_setting_multiplier = settings.startup[setting_name].value
-    return scale * scale_setting_multiplier
-end
-
----@param enemy_unit data.UnitPrototype
-local function update_unit(enemy_unit, scale, filesuffix)
-    local filename = "__enemy-reskins__/graphics/enemies/" .. filesuffix
-    if not enemy_unit then return end
-
-    local anim = {
-        layers = {
-            {
-                filename = filename,
-                width = 162,
-                height = 162,
-                frame_count = 8,
-                line_length = 3,
-                shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-scale-setting")
-            }
-        }
-    }
-
-    enemy_unit.attack_parameters.animation = anim
-    enemy_unit.run_animation = anim
-
-    -- IMPORTANT: remove vanilla frame sequencing (it causes out-of-range errors)
-    enemy_unit.alternative_attacking_frame_sequence = nil
-
-    local corpse = data.raw["corpse"][enemy_unit.corpse]
-    local corpse_animation = {
-        layers = {
-            {
-                --replace the .png part with _corpse.png
-                filename = filename:gsub("%.png$", "_corpse.png"),
-                width = 128,
-                height = 128,
-                frame_count = 1,
-                direction_count = 4,
-                line_length = 2,
-                shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-scale-setting")
-            }
-        }
-    }
-    corpse.animation = corpse_animation
-    corpse.decay_animation = corpse_animation
-
-    -- Fix direction-related data from vanilla corpse
-    corpse.direction_shuffle = nil
-end
-
----@param enemy_spawner data.EnemySpawnerPrototype
-local function update_spawner(enemy_spawner, scale, filesuffix)
-    local filename = "__enemy-reskins__/graphics/spawners/" .. filesuffix
-    if not enemy_spawner then return end
-
-    local anim = {
-        layers = {
-            {
-                filename = filename,
-                width = 64,
-                height = 64,
-                frame_count = 1,
-                line_length = 1,
-                shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-spawner-scale-setting")
-            }
-        }
-    }
-    enemy_spawner.graphics_set.animations = anim
-
-    local corpse = data.raw["corpse"][enemy_spawner.corpse]
-    local corpse_animation = {
-        layers = {
-            {
-                --replace the .png part with _corpse.png
-                filename = filename:gsub("%.png$", "_corpse.png"),
-                width = 64,
-                height = 64,
-                frame_count = 1,
-                line_length = 1,
-                shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-spawner-scale-setting") / 2,
-                tint = { 1, 1, 1, 0.5 }
-            },
-
-        }
-    }
-    corpse.time_before_removed = 3600
-    corpse.animation = corpse_animation
-    corpse.decay_animation = corpse_animation
-
-    -- Fix direction-related data from vanilla corpse
-    corpse.direction_shuffle = nil
-end
+require('helpers/common')
+require('helpers/spawner_logic')
+require('helpers/worm_logic')
+require('helpers/unit_logic')
 
 
-
-local function update_unit_to_goblin_skin(biter, scale)
-    update_unit(biter, scale, "goblin.png")
-end
-
-local function update_unit_to_orc_skin(biter, scale)
-    update_unit(biter, scale, "orc.png")
-end
-
-local function update_unit_to_piggy_skin(biter, scale)
-    update_unit(biter, scale, "piggy.png")
-end
-
-local function update_unit_to_eye_skin(biter, scale)
-    update_unit(biter, scale, "eyes.png")
-end
+biter_spawner_skin_setting = settings.startup["biter-spawner-skin-setting"].value
+update_spawner(biter_spawner, 3, biter_spawner_skin_setting .. ".png")
 
 
----@param biter data.UnitPrototype
-local function tint(biter, color, brightness)
-    if not biter or not biter.run_animation then return end
+spitter_spawner_skin_setting = settings.startup["spitter-spawner-skin-setting"].value
+update_spawner(spitter_spawner, 3, spitter_spawner_skin_setting .. ".png")
 
-    brightness = brightness or .7
 
-    local r = color[1] * brightness
-    local g = color[2] * brightness
-    local b = color[3] * brightness
-    local a = color[4] or 1
+worm_skin_setting = settings.startup["worm-skin-setting"].value
+set_all_worms(worm_skin_setting)
 
-    -- clamp so it doesn't blow out
-    r = math.min(r, 1)
-    g = math.min(g, 1)
-    b = math.min(b, 1)
 
-    local final_color = { r, g, b, a }
-
-    for _, anim in pairs(biter.run_animation.layers or {}) do
-        anim.tint = final_color
-        anim.tint_as_overlay = true
-    end
-end
-
-local biter_spawner_skin_setting = settings.startup["biter-spawner-skin-setting"].value
-local biter_spawner = data.raw["unit-spawner"]["biter-spawner"]
-if biter_spawner_skin_setting == "grey-tent" then
-    update_spawner(biter_spawner, 5, "grey_tent.png")
+local biter_skin_setting = settings.startup["biter-skin-setting"].value --[[@as string]]
+if string.find(biter_skin_setting, "-and-") then
+    local skin1, skin2 = string.match(biter_skin_setting, "^(.-)%-and%-(.-)$")
+    set_low_tier_biters(skin1)
+    set_high_tier_biters(skin2,true)
 else
-    if biter_spawner_skin_setting == "horn-tent" then
-        update_spawner(biter_spawner, 5, "horn_tent.png")
-    end
+    set_all_biters(biter_skin_setting)
 end
 
-local spitter_spawner_skin_setting = settings.startup["spitter-spawner-skin-setting"].value
-local spitter_spawner = data.raw["unit-spawner"]["spitter-spawner"]
-if spitter_spawner_skin_setting == "grey-tent" then
-    update_spawner(spitter_spawner, 5, "grey_tent.png")
+
+local spitter_skin_setting = settings.startup["spitter-skin-setting"].value --[[@as string]]
+if string.find(spitter_skin_setting, "-and-") then
+    local skin1, skin2 = string.match(spitter_skin_setting, "^(.-)%-and%-(.-)$")
+    set_low_tier_spitters(skin1)
+    set_high_tier_spitters(skin2,true)
 else
-    if spitter_spawner_skin_setting == "horn-tent" then
-        update_spawner(spitter_spawner, 5, "horn_tent.png")
-    end
+    set_all_spitters(spitter_skin_setting)
 end
 
-local biter_skin_setting = settings.startup["biter-skin-setting"].value
-local small_biter = data.raw["unit"]["small-biter"]
-local medium_biter = data.raw["unit"]["medium-biter"]
-local big_biter = data.raw["unit"]["big-biter"]
-local behemoth_biter = data.raw["unit"]["behemoth-biter"]
-
-if biter_skin_setting == "goblins-and-orcs" then
-    update_unit_to_goblin_skin(small_biter, 0.3)
-    tint(small_biter, { 0.85, 0.7, 0.25, 1 }, .5)
-
-    update_unit_to_goblin_skin(medium_biter, 0.5)
-    tint(medium_biter, { 0.35, 0.45, 0.65, 1 })
-
-    update_unit_to_orc_skin(big_biter, 1)
-    tint(big_biter, { 0.85, 0.7, 0.25, 1 }, .5)
-
-    update_unit_to_orc_skin(behemoth_biter, 1)
-    tint(behemoth_biter, { 0.35, 0.45, 0.65, 1 })
-else
-    if biter_skin_setting == "goblins" then
-        update_unit_to_goblin_skin(small_biter, 0.3)
-        tint(small_biter, { 0.85, 0.7, 0.25, 1 }, .6)
-
-        update_unit_to_goblin_skin(medium_biter, 0.5)
-        tint(medium_biter, { 0.75, 0.30, 0.45, 1 })
-
-        update_unit_to_goblin_skin(big_biter, 1)
-        tint(big_biter, { 0.25, 0.35, 0.80, 1 })
-
-        update_unit_to_goblin_skin(behemoth_biter, 1.5)
-        tint(behemoth_biter, { 0.35, 0.45, 0.65, 1 })
-    else
-        if biter_skin_setting == "orcs" then
-            update_unit_to_orc_skin(small_biter, 0.3)
-            tint(small_biter, { 0.85, 0.7, 0.25, 1 }, .6)
-
-            update_unit_to_orc_skin(medium_biter, 0.5)
-            tint(medium_biter, { 0.75, 0.30, 0.45, 1 })
-
-            update_unit_to_orc_skin(big_biter, 1)
-            tint(big_biter, { 0.85, 0.7, 0.25, 1 }, .5)
-
-            update_unit_to_orc_skin(behemoth_biter, 1)
-            tint(behemoth_biter, { 0.35, 0.45, 0.65, 1 })
-        end
-    end
-end
-
-local spitter_skin_setting = settings.startup["spitter-skin-setting"].value
-local small_spitter = data.raw["unit"]["small-spitter"]
-local medium_spitter = data.raw["unit"]["medium-spitter"]
-local big_spitter = data.raw["unit"]["big-spitter"]
-local behemoth_spitter = data.raw["unit"]["behemoth-spitter"]
-
-if spitter_skin_setting == "piggy-and-eyes" then
-    update_unit_to_piggy_skin(small_spitter, 0.3)
-    tint(small_spitter, { 0.85, 0.7, 0.25, 1 }, .6)
-
-    update_unit_to_piggy_skin(medium_spitter, 0.5)
-    tint(medium_spitter, { 0.35, 0.45, 0.65, 1 })
-
-    update_unit_to_eye_skin(big_spitter, .6)
-
-    update_unit_to_eye_skin(behemoth_spitter, .8)
-    tint(behemoth_spitter, { 0.35, 0.45, 0.65, 1 })
-else
-    if spitter_skin_setting == "piggy" then
-        update_unit_to_piggy_skin(small_spitter, 0.3)
-        tint(small_spitter, { 0.85, 0.7, 0.25, 1 }, .6)
-
-        update_unit_to_piggy_skin(medium_spitter, 0.5)
-        tint(medium_spitter, { 0.75, 0.30, 0.45, 1 })
-
-        update_unit_to_piggy_skin(big_spitter, .6)
-        tint(big_spitter, { 0.25, 0.35, 0.80, 1 })
-
-        update_unit_to_piggy_skin(behemoth_spitter, .8)
-        tint(behemoth_spitter, { 0.35, 0.45, 0.65, 1 })
-    else
-        if spitter_skin_setting == "eyes" then
-            update_unit_to_eye_skin(small_spitter, 0.3)
-            tint(small_spitter, { 0.85, 0.7, 0.25, 1 }, .6)
-
-            update_unit_to_eye_skin(medium_spitter, 0.5)
-            tint(medium_spitter, { 0.75, 0.30, 0.45, 1 })
-
-            update_unit_to_eye_skin(big_spitter, .6)
-            tint(big_spitter, { 0.25, 0.35, 0.80, 1 })
-
-            update_unit_to_eye_skin(behemoth_spitter, .8)
-            tint(behemoth_spitter, { 0.35, 0.45, 0.65, 1 })
-        end
-    end
-end
-
-
-
----@param worm data.TurretPrototype
-local function update_worm(worm, scale, filesuffix)
-    local filename = "__enemy-reskins__/graphics/enemies/" .. filesuffix
-    if not worm then return end
-
-    local anim = {
-        layers = {
-            {
-                filename = filename,
-                width = 128,
-                height = 128,
-                frame_count = 8,
-                line_length = 3,
-                shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-scale-setting")
-            }
-        }
-    }
-
-    worm.folded_animation = anim
-    worm.preparing_animation = anim
-    worm.prepared_animation = anim
-    worm.folding_animation = anim
-    worm.attacking_animation = anim
-    worm.energy_glow_animation = anim
-    worm.ending_attack_animation = anim
-    worm.starting_attack_animation = anim
-    worm.attack_parameters.animation = anim
-    worm.prepared_alternative_animation = anim
-
-    local corpse = data.raw["corpse"][worm.corpse]
-    local corpse_animation = {
-        layers = {
-            {
-                filename = filename:gsub("%.png$", "_corpse.png"),
-                width = 128,
-                height = 128,
-                frame_count = 8,
-                line_length = 3,
-                direction_count = 1,
-                shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-scale-setting") / 2,
-                tint = { 1, 1, 1, 0.5 }
-            }
-        }
-    }
-
-    corpse.animation = corpse_animation
-    corpse.decay_animation = table.deepcopy(corpse_animation) -- doesn't work without deep copy. Idk why. OK now it doesnt work with or without. shrug
-    corpse.direction_shuffle = nil
-end
-
-local function update_unit_to_turret_skin(biter, scale)
-    update_worm(biter, scale, "turret.png")
-end
-
-local worm_skin_setting = settings.startup["worm-skin-setting"].value
-
-if worm_skin_setting == "zerg" then
-    update_unit_to_turret_skin(data.raw["turret"]["small-worm-turret"], 1)
-    update_unit_to_turret_skin(data.raw["turret"]["medium-worm-turret"], 1.2)
-    update_unit_to_turret_skin(data.raw["turret"]["big-worm-turret"], 1.4)
-    update_unit_to_turret_skin(data.raw["turret"]["behemoth-worm-turret"], 2)
-end
-
-
---opt a
-
--- local function evolution_tint(scale)
---     -- scale expected ~0.3 to ~1.5
---     local t = math.min(math.max(scale, 0.3), 1.5)
-
---     -- normalized factor
---     local f = (t - 0.3) / (1.5 - 0.3)
-
---     return {
---         0.85 - f * 0.4, -- red decreases slightly
---         0.75 - f * 0.2, -- green decreases slightly
---         0.35 + f * 0.3, -- blue increases slightly
---         1
---     }
--- end
-
--- -- usage
--- local small_biter = data.raw["unit"]["small-biter"]
--- update_unit(small_biter, 0.3)
--- tint(small_biter, evolution_tint(0.3))
-
--- local medium_biter = data.raw["unit"]["medium-biter"]
--- update_unit(medium_biter, 0.5)
--- tint(medium_biter, evolution_tint(0.5))
-
--- local big_biter = data.raw["unit"]["big-biter"]
--- update_unit(big_biter, 1.0)
--- tint(big_biter, evolution_tint(1.0))
-
--- local behemoth_biter = data.raw["unit"]["behemoth-biter"]
--- update_unit(behemoth_biter, 1.5)
--- tint(behemoth_biter, evolution_tint(1.5))
 
 
 -- scary
