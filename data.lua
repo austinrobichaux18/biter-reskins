@@ -159,6 +159,11 @@ else
     end
 end
 
+local default_small_tint_color = { 0.85, 0.7, 0.25, 1 }
+local default_medium_tint_color = { 0.35, 0.45, 0.65, 1 }
+local default_big_tint_color = { 0.25, 0.35, 0.80, 1 }
+local default_medium_tint_color_all_same_troop = { 0.75, 0.30, 0.45, 1 }
+
 local biter_skin_setting = settings.startup["biter-skin-setting"].value
 local small_biter = data.raw["unit"]["small-biter"]
 local medium_biter = data.raw["unit"]["medium-biter"]
@@ -167,45 +172,47 @@ local behemoth_biter = data.raw["unit"]["behemoth-biter"]
 
 if biter_skin_setting == "goblins-and-orcs" then
     update_unit_to_goblin_skin(small_biter, 0.3)
-    tint(small_biter, { 0.85, 0.7, 0.25, 1 }, .5)
+    tint(small_biter, default_small_tint_color, .5)
 
     update_unit_to_goblin_skin(medium_biter, 0.5)
-    tint(medium_biter, { 0.35, 0.45, 0.65, 1 })
+    tint(medium_biter, default_medium_tint_color)
 
     update_unit_to_orc_skin(big_biter, 1)
-    tint(big_biter, { 0.85, 0.7, 0.25, 1 }, .5)
+    tint(big_biter, default_small_tint_color, .5)
 
     update_unit_to_orc_skin(behemoth_biter, 1)
-    tint(behemoth_biter, { 0.35, 0.45, 0.65, 1 })
+    tint(behemoth_biter, default_medium_tint_color)
 else
     if biter_skin_setting == "goblins" then
         update_unit_to_goblin_skin(small_biter, 0.3)
-        tint(small_biter, { 0.85, 0.7, 0.25, 1 }, .6)
+        tint(small_biter, default_small_tint_color, .6)
 
         update_unit_to_goblin_skin(medium_biter, 0.5)
-        tint(medium_biter, { 0.75, 0.30, 0.45, 1 })
+        tint(medium_biter, default_medium_tint_color_all_same_troop)
 
         update_unit_to_goblin_skin(big_biter, 1)
-        tint(big_biter, { 0.25, 0.35, 0.80, 1 })
+        tint(big_biter, default_big_tint_color)
 
         update_unit_to_goblin_skin(behemoth_biter, 1.5)
-        tint(behemoth_biter, { 0.35, 0.45, 0.65, 1 })
+        tint(behemoth_biter, default_medium_tint_color)
     else
         if biter_skin_setting == "orcs" then
             update_unit_to_orc_skin(small_biter, 0.3)
-            tint(small_biter, { 0.85, 0.7, 0.25, 1 }, .6)
+            tint(small_biter, default_small_tint_color, .6)
 
             update_unit_to_orc_skin(medium_biter, 0.5)
-            tint(medium_biter, { 0.75, 0.30, 0.45, 1 })
+            tint(medium_biter, default_medium_tint_color_all_same_troop)
 
             update_unit_to_orc_skin(big_biter, 1)
-            tint(big_biter, { 0.85, 0.7, 0.25, 1 }, .5)
+            tint(big_biter, default_small_tint_color, .5)
 
             update_unit_to_orc_skin(behemoth_biter, 1)
-            tint(behemoth_biter, { 0.35, 0.45, 0.65, 1 })
+            tint(behemoth_biter, default_medium_tint_color)
         end
     end
 end
+
+
 
 local spitter_skin_setting = settings.startup["spitter-skin-setting"].value
 local small_spitter = data.raw["unit"]["small-spitter"]
@@ -215,41 +222,41 @@ local behemoth_spitter = data.raw["unit"]["behemoth-spitter"]
 
 if spitter_skin_setting == "piggy-and-eyes" then
     update_unit_to_piggy_skin(small_spitter, 0.3)
-    tint(small_spitter, { 0.85, 0.7, 0.25, 1 }, .6)
+    tint(small_spitter, default_small_tint_color, .6)
 
     update_unit_to_piggy_skin(medium_spitter, 0.5)
-    tint(medium_spitter, { 0.35, 0.45, 0.65, 1 })
+    tint(medium_spitter, default_medium_tint_color)
 
     update_unit_to_eye_skin(big_spitter, .6)
 
     update_unit_to_eye_skin(behemoth_spitter, .8)
-    tint(behemoth_spitter, { 0.35, 0.45, 0.65, 1 })
+    tint(behemoth_spitter, default_medium_tint_color)
 else
     if spitter_skin_setting == "piggy" then
         update_unit_to_piggy_skin(small_spitter, 0.3)
-        tint(small_spitter, { 0.85, 0.7, 0.25, 1 }, .6)
+        tint(small_spitter, default_small_tint_color, .6)
 
         update_unit_to_piggy_skin(medium_spitter, 0.5)
-        tint(medium_spitter, { 0.75, 0.30, 0.45, 1 })
+        tint(medium_spitter, default_medium_tint_color_all_same_troop)
 
         update_unit_to_piggy_skin(big_spitter, .6)
-        tint(big_spitter, { 0.25, 0.35, 0.80, 1 })
+        tint(big_spitter, default_big_tint_color)
 
         update_unit_to_piggy_skin(behemoth_spitter, .8)
-        tint(behemoth_spitter, { 0.35, 0.45, 0.65, 1 })
+        tint(behemoth_spitter, default_medium_tint_color)
     else
         if spitter_skin_setting == "eyes" then
             update_unit_to_eye_skin(small_spitter, 0.3)
-            tint(small_spitter, { 0.85, 0.7, 0.25, 1 }, .6)
+            tint(small_spitter, default_small_tint_color, .6)
 
             update_unit_to_eye_skin(medium_spitter, 0.5)
-            tint(medium_spitter, { 0.75, 0.30, 0.45, 1 })
+            tint(medium_spitter, default_medium_tint_color_all_same_troop)
 
             update_unit_to_eye_skin(big_spitter, .6)
-            tint(big_spitter, { 0.25, 0.35, 0.80, 1 })
+            tint(big_spitter, default_big_tint_color)
 
             update_unit_to_eye_skin(behemoth_spitter, .8)
-            tint(behemoth_spitter, { 0.35, 0.45, 0.65, 1 })
+            tint(behemoth_spitter, default_medium_tint_color)
         end
     end
 end
@@ -320,41 +327,6 @@ if worm_skin_setting == "zerg" then
     update_unit_to_turret_skin(data.raw["turret"]["big-worm-turret"], 1.4)
     update_unit_to_turret_skin(data.raw["turret"]["behemoth-worm-turret"], 2)
 end
-
-
---opt a
-
--- local function evolution_tint(scale)
---     -- scale expected ~0.3 to ~1.5
---     local t = math.min(math.max(scale, 0.3), 1.5)
-
---     -- normalized factor
---     local f = (t - 0.3) / (1.5 - 0.3)
-
---     return {
---         0.85 - f * 0.4, -- red decreases slightly
---         0.75 - f * 0.2, -- green decreases slightly
---         0.35 + f * 0.3, -- blue increases slightly
---         1
---     }
--- end
-
--- -- usage
--- local small_biter = data.raw["unit"]["small-biter"]
--- update_unit(small_biter, 0.3)
--- tint(small_biter, evolution_tint(0.3))
-
--- local medium_biter = data.raw["unit"]["medium-biter"]
--- update_unit(medium_biter, 0.5)
--- tint(medium_biter, evolution_tint(0.5))
-
--- local big_biter = data.raw["unit"]["big-biter"]
--- update_unit(big_biter, 1.0)
--- tint(big_biter, evolution_tint(1.0))
-
--- local behemoth_biter = data.raw["unit"]["behemoth-biter"]
--- update_unit(behemoth_biter, 1.5)
--- tint(behemoth_biter, evolution_tint(1.5))
 
 
 -- scary
