@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.8.0
+Date: 2026-06-23
+  Features:
+    - add individual settings for all biter and spitter sizes
+    - Add startup message and setting
+    - add support for all worm sizes
+    - move scale modifier to each enemy type for more user control
+    - sort settings to be user friendly
+---------------------------------------------------------------------------------------------------
 Version: 1.7.0
 Date: 2026-06-23
   Features:
