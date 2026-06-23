@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.6.0
+Date: 2026-06-23
+  Features:
+    - settings pull from list and set skins mostly dynamicly, spawners and worms done
+    - smaller spawners
+---------------------------------------------------------------------------------------------------
 Version: 1.5.0
 Date: 2026-06-18
   Features:
