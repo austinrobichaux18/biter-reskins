@@ -18,12 +18,10 @@ This is a section of things I plan to add to this mod. This section will likely 
 - Biter/spitter/spawner/worms as player engineer skin set
 
 ### Functionality
-- Add configurable skin at the enemy level (pick for small biter, medium biter, big, behemoth, small spitter, etc..)
-- Message telling users how to configure skins, checkbox to disable 
 - Skin Set quick-set option once we have many skins to choose from 
 - Add support for other character skins as enemy skins 
 - Add 3d ui preview of enemy skins (like character skin helper mod)
-- Add support for "random" enemy type within a tier (small biters can be more than just 1 skin)
+- Add support for "random" enemy type within a tier (e.g. small biters can be more than just 1 skin)
 - Add support for changing enemy skin without restarting the game
 - Possibly add way for players to drop their own sprite sheets/images (of very specific sizes) into a certain folder and the mod pick it up as an option to use 
 
