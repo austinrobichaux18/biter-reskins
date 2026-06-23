@@ -59,45 +59,47 @@ local function update_unit(enemy_unit, scale, filesuffix)
 end
 
 
-function update_unit_to_goblin_skin(biter, scale)
-    update_unit(biter, scale, "goblin.png")
-end
-
-function update_unit_to_orc_skin(biter, scale)
-    update_unit(biter, scale, "orc.png")
-end
-
-function update_unit_to_piggy_skin(biter, scale)
-    update_unit(biter, scale, "piggy.png")
-end
-
-function update_unit_to_eye_skin(biter, scale)
-    update_unit(biter, scale, "eyes.png")
-end
-
 function set_all_biters(biter_skin_setting)
+    set_low_tier_biters(biter_skin_setting)
+    set_high_tier_biters(biter_skin_setting)
+end
+
+function set_low_tier_biters(biter_skin_setting)
     update_unit(small_biter, 0.3, biter_skin_setting .. ".png")
     tint(small_biter, default_small_tint_color, .6)
 
     update_unit(medium_biter, 0.5, biter_skin_setting .. ".png")
     tint(medium_biter, default_medium_tint_color_all_same_troop)
+end
+
+function set_high_tier_biters(biter_skin_setting, use_lower_tier_color)
+    use_lower_tier_color = use_lower_tier_color or false
 
     update_unit(big_biter, 1, biter_skin_setting .. ".png")
-    tint(big_biter, default_big_tint_color)
+    tint(big_biter, use_lower_tier_color and default_small_tint_color or default_big_tint_color)
 
     update_unit(behemoth_biter, 1.5, biter_skin_setting .. ".png")
     tint(behemoth_biter, default_medium_tint_color)
 end
 
 function set_all_spitters(spitter_skin_setting)
+    set_low_tier_spitters(spitter_skin_setting)
+    set_low_tier_spitters(spitter_skin_setting)
+end
+
+function set_low_tier_spitters(spitter_skin_setting)
     update_unit(small_spitter, 0.3, spitter_skin_setting .. ".png")
     tint(small_spitter, default_small_tint_color, .6)
 
     update_unit(medium_spitter, 0.5, spitter_skin_setting .. ".png")
     tint(medium_spitter, default_medium_tint_color_all_same_troop)
+end
 
+function set_high_tier_spitters(spitter_skin_setting, use_lower_tier_color)
+    use_lower_tier_color = use_lower_tier_color or false
+    
     update_unit(big_spitter, .6, spitter_skin_setting .. ".png")
-    tint(big_spitter, default_big_tint_color)
+    tint(big_spitter, use_lower_tier_color and default_small_tint_color or default_big_tint_color)
 
     update_unit(behemoth_spitter, .8, spitter_skin_setting .. ".png")
     tint(behemoth_spitter, default_medium_tint_color)
