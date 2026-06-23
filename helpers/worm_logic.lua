@@ -20,7 +20,7 @@ local function update_worm(worm, scale, filesuffix)
                 frame_count = 8,
                 line_length = 3,
                 shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-scale-setting")
+                scale = scale_modifier(scale, "worm-scale-setting")
             }
         }
     }
@@ -47,7 +47,7 @@ local function update_worm(worm, scale, filesuffix)
     --             line_length = 3,
     --             direction_count = 1,
     --             shift = util.by_pixel(0, 0),
-    --             scale = scale_modifier(scale, "enemy-scale-setting") / 2,
+    --             scale = scale_modifier(scale, "worm-scale-setting") / 2,
     --             tint = { 1, 1, 1, 0.5 }
     --         }
     --     }

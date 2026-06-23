@@ -14,6 +14,7 @@ behemoth_biter = data.raw["unit"]["behemoth-biter"]
 local function update_unit(enemy_unit, scale, filesuffix)
     local filename = "__enemy-reskins__/graphics/units/" .. filesuffix
     if not enemy_unit then return end
+    local unit_type = enemy_unit.name:find("biter") and "biter" or (enemy_unit.name:find("spitter") and "spitter" or nil)
 
     local anim = {
         layers = {
@@ -24,7 +25,7 @@ local function update_unit(enemy_unit, scale, filesuffix)
                 frame_count = 8,
                 line_length = 3,
                 shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-scale-setting")
+                scale = scale_modifier(scale, unit_type .. "-scale-setting")
             }
         }
     }
@@ -47,7 +48,7 @@ local function update_unit(enemy_unit, scale, filesuffix)
                 direction_count = 4,
                 line_length = 2,
                 shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-scale-setting")
+                scale = scale_modifier(scale, unit_type .. "-scale-setting")
             }
         }
     }
@@ -97,7 +98,7 @@ end
 
 function set_high_tier_spitters(spitter_skin_setting, use_lower_tier_color)
     use_lower_tier_color = use_lower_tier_color or false
-    
+
     update_unit(big_spitter, .6, spitter_skin_setting .. ".png")
     tint(big_spitter, use_lower_tier_color and default_small_tint_color or default_big_tint_color)
 

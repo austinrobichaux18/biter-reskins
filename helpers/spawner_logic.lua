@@ -17,7 +17,7 @@ function update_spawner(enemy_spawner, scale, filesuffix)
                 frame_count = 1,
                 line_length = 1,
                 shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-spawner-scale-setting")
+                scale = scale_modifier(scale, "spawner-scale-setting")
             }
         }
     }
@@ -34,7 +34,7 @@ function update_spawner(enemy_spawner, scale, filesuffix)
                 frame_count = 1,
                 line_length = 1,
                 shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-spawner-scale-setting") / 2,
+                scale = scale_modifier(scale, "spawner-scale-setting") / 2,
                 tint = { 1, 1, 1, 0.5 }
             },
 

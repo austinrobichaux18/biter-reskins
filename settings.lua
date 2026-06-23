@@ -63,18 +63,34 @@ data:extend({
 data:extend({
     {
         type = "double-setting",
-        name = "enemy-scale-setting",
+        name = "biter-scale-setting",
         setting_type = "startup",
         default_value = 1.0,
         minimum_value = 0.1,
         maximum_value = 10,
         order = "a"
-    }
-})
-data:extend({
+    },
     {
         type = "double-setting",
-        name = "enemy-spawner-scale-setting",
+        name = "spitter-scale-setting",
+        setting_type = "startup",
+        default_value = 1.0,
+        minimum_value = 0.1,
+        maximum_value = 10,
+        order = "b"
+    },
+    {
+        type = "double-setting",
+        name = "worm-scale-setting",
+        setting_type = "startup",
+        default_value = 1.0,
+        minimum_value = 0.1,
+        maximum_value = 10,
+        order = "c"
+    },
+    {
+        type = "double-setting",
+        name = "spawner-scale-setting",
         setting_type = "startup",
         default_value = 1.0,
         minimum_value = 0.1,
