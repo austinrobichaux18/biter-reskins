@@ -1,6 +1,5 @@
 require('helpers/common')
 
-worm_skin_setting = settings.startup["worm-skin-setting"].value
 small_worm = data.raw["turret"]["small-worm-turret"]
 medium_worm = data.raw["turret"]["medium-worm-turret"]
 big_worm = data.raw["turret"]["big-worm-turret"]
@@ -20,7 +19,7 @@ local function update_worm(worm, scale, filesuffix)
                 frame_count = 8,
                 line_length = 3,
                 shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-scale-setting")
+                scale = scale_modifier(scale, "worm-scale-setting")
             }
         }
     }
@@ -47,7 +46,7 @@ local function update_worm(worm, scale, filesuffix)
     --             line_length = 3,
     --             direction_count = 1,
     --             shift = util.by_pixel(0, 0),
-    --             scale = scale_modifier(scale, "enemy-scale-setting") / 2,
+    --             scale = scale_modifier(scale, "worm-scale-setting") / 2,
     --             tint = { 1, 1, 1, 0.5 }
     --         }
     --     }
@@ -59,9 +58,14 @@ local function update_worm(worm, scale, filesuffix)
 end
 
 
-function set_all_worms(worm_skin_setting)
-    update_worm(small_worm, 1, worm_skin_setting .. ".png")
-    update_worm(medium_worm, 1.2, worm_skin_setting .. ".png")
-    update_worm(big_worm, 1.4, worm_skin_setting .. ".png")
-    update_worm(behemoth_worm, 2, worm_skin_setting .. ".png")
+function set_all_worms()
+    local small_worm_skin = settings.startup["small-worm-skin-setting"].value
+    local medium_worm_skin = settings.startup["medium-worm-skin-setting"].value
+    local big_worm_skin = settings.startup["big-worm-skin-setting"].value
+    local behemoth_worm_skin = settings.startup["behemoth-worm-skin-setting"].value
+
+    update_worm(small_worm, 1, small_worm_skin .. ".png")
+    update_worm(medium_worm, 1.2, medium_worm_skin .. ".png")
+    update_worm(big_worm, 1.4, big_worm_skin .. ".png")
+    update_worm(behemoth_worm, 2, behemoth_worm_skin .. ".png")
 end

@@ -1,39 +1,11 @@
-require('helpers/common')
 require('helpers/spawner_logic')
 require('helpers/worm_logic')
 require('helpers/unit_logic')
 
-
-biter_spawner_skin_setting = settings.startup["biter-spawner-skin-setting"].value
-update_spawner(biter_spawner, 3, biter_spawner_skin_setting .. ".png")
-
-
-spitter_spawner_skin_setting = settings.startup["spitter-spawner-skin-setting"].value
-update_spawner(spitter_spawner, 3, spitter_spawner_skin_setting .. ".png")
-
-
-worm_skin_setting = settings.startup["worm-skin-setting"].value
-set_all_worms(worm_skin_setting)
-
-
-local biter_skin_setting = settings.startup["biter-skin-setting"].value --[[@as string]]
-if string.find(biter_skin_setting, "-and-") then
-    local skin1, skin2 = string.match(biter_skin_setting, "^(.-)%-and%-(.-)$")
-    set_low_tier_biters(skin1)
-    set_high_tier_biters(skin2,true)
-else
-    set_all_biters(biter_skin_setting)
-end
-
-
-local spitter_skin_setting = settings.startup["spitter-skin-setting"].value --[[@as string]]
-if string.find(spitter_skin_setting, "-and-") then
-    local skin1, skin2 = string.match(spitter_skin_setting, "^(.-)%-and%-(.-)$")
-    set_low_tier_spitters(skin1)
-    set_high_tier_spitters(skin2,true)
-else
-    set_all_spitters(spitter_skin_setting)
-end
+set_spawners()
+set_all_worms()
+set_biters()
+set_spitters()
 
 
 

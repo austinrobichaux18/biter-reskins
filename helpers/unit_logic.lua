@@ -1,19 +1,20 @@
 require('helpers/common')
 
-small_spitter = data.raw["unit"]["small-spitter"]
-medium_spitter = data.raw["unit"]["medium-spitter"]
-big_spitter = data.raw["unit"]["big-spitter"]
-behemoth_spitter = data.raw["unit"]["behemoth-spitter"]
-
 small_biter = data.raw["unit"]["small-biter"]
 medium_biter = data.raw["unit"]["medium-biter"]
 big_biter = data.raw["unit"]["big-biter"]
 behemoth_biter = data.raw["unit"]["behemoth-biter"]
 
+small_spitter = data.raw["unit"]["small-spitter"]
+medium_spitter = data.raw["unit"]["medium-spitter"]
+big_spitter = data.raw["unit"]["big-spitter"]
+behemoth_spitter = data.raw["unit"]["behemoth-spitter"]
+
 ---@param enemy_unit data.UnitPrototype
 local function update_unit(enemy_unit, scale, filesuffix)
     local filename = "__enemy-reskins__/graphics/units/" .. filesuffix
     if not enemy_unit then return end
+    local unit_type = enemy_unit.name:find("biter") and "biter" or (enemy_unit.name:find("spitter") and "spitter" or nil)
 
     local anim = {
         layers = {
@@ -24,7 +25,7 @@ local function update_unit(enemy_unit, scale, filesuffix)
                 frame_count = 8,
                 line_length = 3,
                 shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-scale-setting")
+                scale = scale_modifier(scale, unit_type .. "-scale-setting")
             }
         }
     }
@@ -47,7 +48,7 @@ local function update_unit(enemy_unit, scale, filesuffix)
                 direction_count = 4,
                 line_length = 2,
                 shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-scale-setting")
+                scale = scale_modifier(scale, unit_type .. "-scale-setting")
             }
         }
     }
@@ -59,48 +60,41 @@ local function update_unit(enemy_unit, scale, filesuffix)
 end
 
 
-function set_all_biters(biter_skin_setting)
-    set_low_tier_biters(biter_skin_setting)
-    set_high_tier_biters(biter_skin_setting)
-end
+function set_biters()
+    local small_biter_skin = settings.startup["small-biter-skin-setting"].value
+    local medium_biter_skin = settings.startup["medium-biter-skin-setting"].value
+    local big_biter_skin = settings.startup["big-biter-skin-setting"].value
+    local behemoth_biter_skin = settings.startup["behemoth-biter-skin-setting"].value
 
-function set_low_tier_biters(biter_skin_setting)
-    update_unit(small_biter, 0.3, biter_skin_setting .. ".png")
+    update_unit(small_biter, 0.3, small_biter_skin .. ".png")
     tint(small_biter, default_small_tint_color, .6)
 
-    update_unit(medium_biter, 0.5, biter_skin_setting .. ".png")
+    update_unit(medium_biter, 0.5, medium_biter_skin .. ".png")
     tint(medium_biter, default_medium_tint_color_all_same_troop)
-end
 
-function set_high_tier_biters(biter_skin_setting, use_lower_tier_color)
-    use_lower_tier_color = use_lower_tier_color or false
+    update_unit(big_biter, 1, big_biter_skin .. ".png")
+    tint(big_biter, not medium_biter_skin == big_biter_skin and default_big_tint_color or default_small_tint_color)
 
-    update_unit(big_biter, 1, biter_skin_setting .. ".png")
-    tint(big_biter, use_lower_tier_color and default_small_tint_color or default_big_tint_color)
-
-    update_unit(behemoth_biter, 1.5, biter_skin_setting .. ".png")
+    update_unit(behemoth_biter, 1.5, behemoth_biter_skin .. ".png")
     tint(behemoth_biter, default_medium_tint_color)
 end
 
-function set_all_spitters(spitter_skin_setting)
-    set_low_tier_spitters(spitter_skin_setting)
-    set_low_tier_spitters(spitter_skin_setting)
-end
+function set_spitters()
+    local small_spitter_skin = settings.startup["small-spitter-skin-setting"].value
+    local medium_spitter_skin = settings.startup["medium-spitter-skin-setting"].value
+    local big_spitter_skin = settings.startup["big-spitter-skin-setting"].value
+    local behemoth_spitter_skin = settings.startup["behemoth-spitter-skin-setting"].value
 
-function set_low_tier_spitters(spitter_skin_setting)
-    update_unit(small_spitter, 0.3, spitter_skin_setting .. ".png")
+    update_unit(small_spitter, 0.3, small_spitter_skin .. ".png")
     tint(small_spitter, default_small_tint_color, .6)
 
-    update_unit(medium_spitter, 0.5, spitter_skin_setting .. ".png")
+    update_unit(medium_spitter, 0.5, medium_spitter_skin .. ".png")
     tint(medium_spitter, default_medium_tint_color_all_same_troop)
-end
 
-function set_high_tier_spitters(spitter_skin_setting, use_lower_tier_color)
-    use_lower_tier_color = use_lower_tier_color or false
-    
-    update_unit(big_spitter, .6, spitter_skin_setting .. ".png")
-    tint(big_spitter, use_lower_tier_color and default_small_tint_color or default_big_tint_color)
+    update_unit(big_spitter, .6, big_spitter_skin .. ".png")
+    tint(big_spitter, not medium_spitter_skin == big_spitter_skin and default_big_tint_color or default_small_tint_color)
 
-    update_unit(behemoth_spitter, .8, spitter_skin_setting .. ".png")
+
+    update_unit(behemoth_spitter, .8, behemoth_spitter_skin .. ".png")
     tint(behemoth_spitter, default_medium_tint_color)
 end

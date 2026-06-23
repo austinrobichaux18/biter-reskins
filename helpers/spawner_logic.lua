@@ -17,7 +17,7 @@ function update_spawner(enemy_spawner, scale, filesuffix)
                 frame_count = 1,
                 line_length = 1,
                 shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-spawner-scale-setting")
+                scale = scale_modifier(scale, "spawner-scale-setting")
             }
         }
     }
@@ -34,7 +34,7 @@ function update_spawner(enemy_spawner, scale, filesuffix)
                 frame_count = 1,
                 line_length = 1,
                 shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, "enemy-spawner-scale-setting") / 2,
+                scale = scale_modifier(scale, "spawner-scale-setting") / 2,
                 tint = { 1, 1, 1, 0.5 }
             },
 
@@ -46,4 +46,13 @@ function update_spawner(enemy_spawner, scale, filesuffix)
 
     -- Fix direction-related data from vanilla corpse
     corpse.direction_shuffle = nil
+end
+
+function set_spawners()
+    biter_spawner_skin_setting = settings.startup["biter-spawner-skin-setting"].value
+    update_spawner(biter_spawner, 3, biter_spawner_skin_setting .. ".png")
+
+
+    spitter_spawner_skin_setting = settings.startup["spitter-spawner-skin-setting"].value
+    update_spawner(spitter_spawner, 3, spitter_spawner_skin_setting .. ".png")
 end

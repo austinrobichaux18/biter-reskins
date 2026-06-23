@@ -1,4 +1,7 @@
 function scale_modifier(scale, setting_name)
+    if setting_name:find('nil') then
+        return scale
+    end
     local scale_setting_multiplier = settings.startup[setting_name].value
     return scale * scale_setting_multiplier
 end
