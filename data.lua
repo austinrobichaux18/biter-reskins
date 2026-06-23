@@ -5,11 +5,11 @@ require('helpers/unit_logic')
 
 
 biter_spawner_skin_setting = settings.startup["biter-spawner-skin-setting"].value
-update_spawner(biter_spawner, 5, biter_spawner_skin_setting .. ".png")
+update_spawner(biter_spawner, 3, biter_spawner_skin_setting .. ".png")
 
 
 spitter_spawner_skin_setting = settings.startup["spitter-spawner-skin-setting"].value
-update_spawner(spitter_spawner, 5, spitter_spawner_skin_setting .. ".png")
+update_spawner(spitter_spawner, 3, spitter_spawner_skin_setting .. ".png")
 
 
 worm_skin_setting = settings.startup["worm-skin-setting"].value
