@@ -8,7 +8,7 @@ This is a factorio mod that reskins various enemies
 # Roadmap
 This is a section of things I plan to add to this mod. This section will likely grow very large. Feel free to leave requests for more things to add.
 - Add configurable skin at the enemy level (pick for small biter, medium biter, big, behemoth, small spitter, etc..)
-- Clean code and make it more modular and dynamic so I can add lots more skins easily
+- Message telling users how to configure skins, checkbox to disable 
 - Fix the damn spinning
 - Crystal theme biters
 - Zombie Theme
