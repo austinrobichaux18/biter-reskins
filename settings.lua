@@ -2,6 +2,15 @@ require('helpers/constants')
 
 data:extend({
     {
+        type = "bool-setting",
+        name = "startup-message-setting",
+        setting_type = "runtime-global",
+        default_value = true,
+        order = "a"
+    }
+})
+data:extend({
+    {
         type = "string-setting",
         name = "biter-skin-setting",
         setting_type = "startup",
