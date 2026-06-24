@@ -37,7 +37,6 @@ function update_spawner(enemy_spawner, scale, filesuffix)
                 scale = scale_modifier(scale, "spawner-scale-setting") / 2,
                 tint = { 1, 1, 1, 0.5 }
             },
-
         }
     }
     corpse.time_before_removed = 3600

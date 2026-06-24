@@ -21,7 +21,7 @@ function update_worm(worm, scale, filesuffix)
                 filename = filename,
                 width = 128,
                 height = 128,
-                frame_count = 1, --if frame_count is 8 and direction_count is not listed, they spin.
+                frame_count = 1, 
                 direction_count = 8,
                 line_length = 3,
                 shift = util.by_pixel(0, 0),
@@ -41,26 +41,25 @@ function update_worm(worm, scale, filesuffix)
     worm.attack_parameters.animation = animation
     worm.prepared_alternative_animation = animation
 
-    -- local corpse = data.raw["corpse"][worm.corpse]
-    -- local corpse_animation = {
-    --     layers = {
-    --         {
-    --             filename = filename:gsub("%.png$", "_corpse.png"),
-    --             width = 128,
-    --             height = 128,
-    --             frame_count = 8,
-    --             line_length = 3,
-    --             direction_count = 1,
-    --             shift = util.by_pixel(0, 0),
-    --             scale = scale_modifier(scale, "worm-scale-setting") / 2,
-    --             tint = { 1, 1, 1, 0.5 }
-    --         }
-    --     }
-    -- }
+    local corpse = data.raw["corpse"][worm.corpse]
+    local corpse_animation = {
+        layers = {
+            {
+                filename = filename:gsub("%.png$", ".png"),
+                width = 128,
+                height = 128,
+                frame_count = 8,
+                line_length = 3,
+                direction_count = 1,
+                scale = scale_modifier(scale, "worm-scale-setting") / 2,
+                tint = { 1, 1, 1, 0.5 }
+            }
+        }
+    }
 
-    -- corpse.animation = corpse_animation
-    -- corpse.decay_animation = table.deepcopy(corpse_animation) -- doesn't work without deep copy. Idk why. OK now it doesnt work with or without. shrug
-    -- corpse.direction_shuffle = nil
+    corpse.animation = corpse_animation
+    corpse.decay_animation = corpse_animation
+    corpse.direction_shuffle = nil
 end
 
 function set_all_worms()

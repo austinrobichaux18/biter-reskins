@@ -9,6 +9,7 @@ Factorio Mod Portal link for this mod here (Preview Images available). https://m
 
 # Compatibilities
 - Rampant Fixed
+- Armored Biters WIP
 
 # Roadmap
 This is a section of things I plan to add to this mod. This section will likely grow very large. Feel free to leave requests for more things to add.
@@ -25,13 +26,9 @@ This is a section of things I plan to add to this mod. This section will likely 
 ### Functionality
 - Skin Set quick-set option once we have many skins to choose from 
 - Add support for other character skins as enemy skins 
-- Add 3d ui preview of enemy skins (like character skin helper mod)
-- Add support for "random" enemy type within a tier (e.g. small biters can be more than just 1 skin)
-- Add support for changing enemy skin without restarting the game
-- Possibly add way for players to drop their own sprite sheets/images (of very specific sizes) into a certain folder and the mod pick it up as an option to use 
 
 ### Bugs / Issues
-- fix worm death animation
+- None! 
 
 # Sprite Sheet Reorganizer
 I made a sprite sheet reorganizer simple console app as well to reorganize my sprites into factorio's order. 

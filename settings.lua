@@ -15,7 +15,7 @@ data:extend({
     -- =====================
     -- BITERS
     -- =====================
-    {
+    { 
         type = "double-setting",
         name = "biter-scale-setting",
         setting_type = "startup",
@@ -176,3 +176,8 @@ data:extend({
         order = "d[spawners]-11"
     }
 })
+
+
+-- if mods["ArmouredBiters"] then
+--    data:extend({})
+-- end
