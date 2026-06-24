@@ -90,21 +90,21 @@ function set_biters()
     local behemoth_biter_skin = settings.startup["behemoth-biter-skin-setting"].value
 
     update_unit(small_biter, small_biter_scale, small_biter_skin .. ".png")
-    tint(small_biter, default_small_tint_color, 0.6)
+    tint(small_biter, default_small_tint_color, 0.6, true)
 
     update_unit(medium_biter, medium_biter_scale, medium_biter_skin .. ".png")
-    tint(medium_biter, default_medium_tint_color_all_same_troop)
+    tint(medium_biter, default_medium_tint_color_all_same_troop, true)
 
     update_unit(big_biter, big_biter_scale, big_biter_skin .. ".png")
     tint(
         big_biter,
-        (medium_biter_skin ~= big_biter_skin)
+        (medium_biter_skin == big_biter_skin)
         and default_big_tint_color
-        or default_small_tint_color
+        or default_small_tint_color, true
     )
 
     update_unit(behemoth_biter, behemoth_biter_scale, behemoth_biter_skin .. ".png")
-    tint(behemoth_biter, default_medium_tint_color)
+    tint(behemoth_biter, default_medium_tint_color, true)
 end
 
 function set_spitters()
@@ -114,19 +114,19 @@ function set_spitters()
     local behemoth_spitter_skin = settings.startup["behemoth-spitter-skin-setting"].value
 
     update_unit(small_spitter, small_spitter_scale, small_spitter_skin .. ".png")
-    tint(small_spitter, default_small_tint_color, 0.6)
+    tint(small_spitter, default_small_tint_color, 0.6, true)
 
     update_unit(medium_spitter, medium_spitter_scale, medium_spitter_skin .. ".png")
-    tint(medium_spitter, default_medium_tint_color_all_same_troop)
+    tint(medium_spitter, default_medium_tint_color_all_same_troop, true)
 
     update_unit(big_spitter, big_spitter_scale, big_spitter_skin .. ".png")
     tint(
         big_spitter,
-        (medium_spitter_skin ~= big_spitter_skin)
+        (medium_spitter_skin == big_spitter_skin)
         and default_big_tint_color
-        or default_small_tint_color
+        or default_small_tint_color, true
     )
 
     update_unit(behemoth_spitter, behemoth_spitter_scale, behemoth_spitter_skin .. ".png")
-    tint(behemoth_spitter, default_medium_tint_color)
+    tint(behemoth_spitter, default_medium_tint_color, true)
 end

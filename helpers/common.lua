@@ -30,29 +30,45 @@ function tint_base(color, brightness)
 end
 
 ---@param biter data.UnitPrototype
-function tint(biter, color, brightness)
+function tint(biter, color, brightness, tint_as_overlay)
+    if type(brightness) == "boolean" then
+        tint_as_overlay = brightness
+        brightness = nil
+    elseif type(brightness) ~= "number" then
+        brightness = nil
+    end
+
     local final_color = tint_base(color, brightness)
 
     if not biter or not biter.run_animation then return end
     for _, anim in pairs(biter.run_animation.layers or {}) do
         anim.tint = final_color
+        anim.tint_as_overlay = tint_as_overlay
     end
 
     if not biter or not biter.attack_parameters.animation then return end
     for _, anim in pairs(biter.attack_parameters.animation.layers or {}) do
         anim.tint = final_color
-        anim.tint_as_overlay = true
+        anim.tint_as_overlay = tint_as_overlay
     end
 
     local corpse = data.raw["corpse"][biter.corpse]
     if not corpse then return end
     for _, anim in pairs(corpse.animation.layers or {}) do
         anim.tint = final_color
+        anim.tint_as_overlay = tint_as_overlay
     end
 end
 
 ---@param turret data.TurretPrototype
-function tint_turret(turret, color, brightness)
+function tint_turret(turret, color, brightness, tint_as_overlay)
+    if type(brightness) == "boolean" then
+        tint_as_overlay = brightness
+        brightness = nil
+    elseif type(brightness) ~= "number" then
+        brightness = nil
+    end
+
     local final_color = tint_base(color, brightness)
 
     local fields = {
@@ -68,11 +84,18 @@ function tint_turret(turret, color, brightness)
     }
 
     local function tint_animation(anim)
+        if type(brightness) == "boolean" then
+            tint_as_overlay = brightness
+            brightness = nil
+        elseif type(brightness) ~= "number" then
+            brightness = nil
+        end
+
         if not anim or not anim.layers then return end
 
         for _, layer in pairs(anim.layers) do
             layer.tint = final_color
-            layer.tint_as_overlay = true
+            anim.tint_as_overlay = tint_as_overlay
         end
     end
 
@@ -90,21 +113,24 @@ function tint_turret(turret, color, brightness)
     if not corpse then return end
     for _, anim in pairs(corpse.animation.layers or {}) do
         anim.tint = final_color
+        anim.tint_as_overlay = tint_as_overlay
     end
 end
 
 ---@param spawner data.EnemySpawnerPrototype
-function tint_spawner(spawner, color, brightness)
+function tint_spawner(spawner, color, brightness, tint_as_overlay)
     local final_color = tint_base(color, brightness)
 
     if not spawner or not spawner.graphics_set or not spawner.graphics_set.animations then return end
     for _, anim in pairs(spawner.graphics_set.animations.layers or {}) do
         anim.tint = final_color
+        anim.tint_as_overlay = tint_as_overlay
     end
 
     local corpse = data.raw["corpse"][spawner.corpse]
     if not corpse then return end
     for _, anim in pairs(corpse.animation.layers or {}) do
         anim.tint = final_color
+        anim.tint_as_overlay = tint_as_overlay
     end
 end
