@@ -36,13 +36,18 @@ function tint(biter, color, brightness)
     if not biter or not biter.run_animation then return end
     for _, anim in pairs(biter.run_animation.layers or {}) do
         anim.tint = final_color
-        -- anim.tint_as_overlay = true
     end
 
     if not biter or not biter.attack_parameters.animation then return end
     for _, anim in pairs(biter.attack_parameters.animation.layers or {}) do
         anim.tint = final_color
         anim.tint_as_overlay = true
+    end
+
+    local corpse = data.raw["corpse"][biter.corpse]
+    if not corpse then return end
+    for _, anim in pairs(corpse.animation.layers or {}) do
+        anim.tint = final_color
     end
 end
 
@@ -80,21 +85,31 @@ function tint_turret(turret, color, brightness)
     if turret.attack_parameters and turret.attack_parameters.animation then
         tint_animation(turret.attack_parameters.animation)
     end
+
+    local corpse = data.raw["corpse"][turret.corpse]
+    if not corpse then return end
+    for _, anim in pairs(corpse.animation.layers or {}) do
+        anim.tint = final_color
+    end
 end
 
 ---@param spawner data.EnemySpawnerPrototype
 function tint_spawner(spawner, color, brightness)
     local final_color = tint_base(color, brightness)
 
-    local final_color = tint_base(color, brightness)
-
-
     if not spawner or not spawner.graphics_set or not spawner.graphics_set.animations then return end
     for _, anim in pairs(spawner.graphics_set.animations.layers or {}) do
         anim.tint = final_color
-        -- anim.tint_as_overlay = true
     end
 
-    -- corpse.animation = corpse_animation
-    -- corpse.decay_animation = corpse_animation
+    local corpse = data.raw["corpse"][spawner.corpse]
+    if not corpse then return end
+    for _, anim in pairs(corpse.animation.layers or {}) do
+        anim.tint = final_color
+    end
+    -- for _, anim in pairs(corpse.decay_animation.layers or {}) do
+    --     anim.tint = final_color
+    -- end
 end
+
+-- do corpses
