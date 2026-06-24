@@ -7,7 +7,8 @@
   "description": "Gives various fun options for reskinning the enemies",
   "factorio_version": "2.0",
   "dependencies": [
-    "base"
+    "base",
+    "? RampantFixed"
   ],
   "quality_required": false,
   "rail_bridges_required": false,
