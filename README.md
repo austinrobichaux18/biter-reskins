@@ -5,6 +5,8 @@
 
 This is a factorio mod that reskins various enemies
 
+Factorio Mod Portal link for this mod here (Preview Images available). https://mods.factorio.com/mod/enemy-reskins
+
 # Roadmap
 This is a section of things I plan to add to this mod. This section will likely grow very large. Feel free to leave requests for more things to add.
 
@@ -28,7 +30,9 @@ This is a section of things I plan to add to this mod. This section will likely 
 ### Bugs / Issues
 - fix worm death animation
 
-
+# Sprite Sheet Reorganizer
+I made a sprite sheet reorganizer simple console app as well to reorganize my sprites into factorio's order. 
+See here. https://github.com/austinrobichaux18/sprite-sheet-reorganizer
 
 # Like my work? Support me!
 - Tell everyone you know to try the mod :)
