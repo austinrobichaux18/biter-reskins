@@ -107,9 +107,4 @@ function tint_spawner(spawner, color, brightness)
     for _, anim in pairs(corpse.animation.layers or {}) do
         anim.tint = final_color
     end
-    -- for _, anim in pairs(corpse.decay_animation.layers or {}) do
-    --     anim.tint = final_color
-    -- end
 end
-
--- do corpses
