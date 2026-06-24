@@ -1,8 +1,9 @@
 require('helpers/common')
 require('helpers/unit_logic')
 require('helpers/worm_logic')
+require('helpers/spawner_logic')
 
-rampant_fixed = {}
+local rampant_fixed = {}
 
 local enemy_tints = {
     -- Vanilla
@@ -80,25 +81,25 @@ function rampant_fixed.apply_compatability()
 
             if tier then
                 if name:find("biter", 1, true) then
-                    if tier <= 2 then
+                    if tier <= 2 and small_biter_skin ~= "default" then
                         update_unit(unit, small_biter_scale, small_biter_skin .. ".png")
-                    elseif tier <= 5 then
+                    elseif tier <= 5 and medium_biter_skin ~= "default" then
                         update_unit(unit, medium_biter_scale, medium_biter_skin .. ".png")
-                    elseif tier <= 8 then
+                    elseif tier <= 8 and big_biter_skin ~= "default" then
                         update_unit(unit, big_biter_scale, big_biter_skin .. ".png")
-                    else
+                    elseif behemoth_biter_skin ~= "default" then
                         update_unit(unit, behemoth_biter_scale, behemoth_biter_skin .. ".png")
                     end
                 end
 
                 if name:find("spitter", 1, true) then
-                    if tier <= 2 then
+                    if tier <= 2 and small_spitter_skin ~= "default" then
                         update_unit(unit, small_spitter_scale, small_spitter_skin .. ".png")
-                    elseif tier <= 5 then
+                    elseif tier <= 5 and medium_spitter_skin ~= "default" then
                         update_unit(unit, medium_spitter_scale, medium_spitter_skin .. ".png")
-                    elseif tier <= 8 then
+                    elseif tier <= 8 and big_spitter_skin ~= "default" then
                         update_unit(unit, big_spitter_scale, big_spitter_skin .. ".png")
-                    else
+                    elseif behemoth_spitter_skin ~= "default" then
                         update_unit(unit, behemoth_spitter_scale, behemoth_spitter_skin .. ".png")
                     end
                 end
@@ -124,13 +125,13 @@ function rampant_fixed.apply_compatability()
 
             if tier then
                 if name:find("worm", 1, true) then
-                    if tier <= 2 then
+                    if tier <= 2 and small_worm_skin ~= "default" then
                         update_worm(turret, small_worm_scale, small_worm_skin .. ".png")
-                    elseif tier <= 5 then
+                    elseif tier <= 5 and medium_worm_skin ~= "default" then
                         update_worm(turret, medium_worm_scale, medium_worm_skin .. ".png")
-                    elseif tier <= 8 then
+                    elseif tier <= 8 and big_worm_skin ~= "default" then
                         update_worm(turret, big_worm_scale, big_worm_skin .. ".png")
-                    else
+                    elseif behemoth_worm_skin ~= "default" then
                         update_worm(turret, behemoth_worm_scale, behemoth_worm_skin .. ".png")
                     end
                 end
@@ -154,9 +155,9 @@ function rampant_fixed.apply_compatability()
             tier = normalize_tier_for_scaling(tier)
 
             if tier then
-                if name:find("biter", 1, true) then
+                if name:find("biter", 1, true) and biter_spawner_skin_setting ~= "default" then
                     update_spawner(spawner, tier, biter_spawner_skin_setting .. ".png")
-                elseif name:find("spitter", 1, true) then
+                elseif name:find("spitter", 1, true) and spitter_spawner_skin_setting ~= "default" then
                     update_spawner(spawner, tier, spitter_spawner_skin_setting .. ".png")
                 end
             end

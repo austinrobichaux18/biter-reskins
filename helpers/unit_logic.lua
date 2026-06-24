@@ -72,7 +72,7 @@ function update_unit(enemy_unit, scale, filesuffix)
                 direction_count = 4,
                 line_length = 2,
                 shift = util.by_pixel(0, 0),
-                scale = scale_modifier(scale, unit_type .. "-scale-setting")
+                scale = scale_modifier(scale, unit_type .. "-scale-setting"),
             }
         }
     }

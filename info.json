@@ -8,7 +8,8 @@
   "factorio_version": "2.0",
   "dependencies": [
     "base",
-    "? RampantFixed"
+    "? RampantFixed",
+    "? ArmouredBiters"
   ],
   "quality_required": false,
   "rail_bridges_required": false,

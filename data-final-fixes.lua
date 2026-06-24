@@ -13,6 +13,11 @@ if mods["RampantFixed"] then
     rampant_fixed.apply_compatability()
 end
 
+if mods["ArmouredBiters"] then
+    local armoured_biters = require('compatability/armoured_biters')
+    armoured_biters.apply_compatability()
+end
+
 -- scary
 -- local BASE = {0.78, 0.72, 0.40, 1} -- neutral warm base
 

@@ -15,7 +15,7 @@ data:extend({
     -- =====================
     -- BITERS
     -- =====================
-    { 
+    {
         type = "double-setting",
         name = "biter-scale-setting",
         setting_type = "startup",
@@ -178,6 +178,23 @@ data:extend({
 })
 
 
--- if mods["ArmouredBiters"] then
---    data:extend({})
--- end
+if mods["ArmouredBiters"] then
+    data:extend({
+        {
+            type = "string-setting",
+            name = "armoured-biter-skin-setting",
+            setting_type = "startup",
+            default_value = "default",
+            allowed_values = unit_skins,
+            order = "ea[biters]-10"
+        },
+        {
+            type = "string-setting",
+            name = "armoured-spawner-skin-setting",
+            setting_type = "startup",
+            default_value = "default",
+            allowed_values = spawner_skins,
+            order = "eb[spawners]-10"
+        },
+    })
+end
