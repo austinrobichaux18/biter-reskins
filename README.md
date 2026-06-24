@@ -7,6 +7,9 @@ This is a factorio mod that reskins various enemies
 
 Factorio Mod Portal link for this mod here (Preview Images available). https://mods.factorio.com/mod/enemy-reskins
 
+# Compatibilities
+- Rampant Fixed
+
 # Roadmap
 This is a section of things I plan to add to this mod. This section will likely grow very large. Feel free to leave requests for more things to add.
 
