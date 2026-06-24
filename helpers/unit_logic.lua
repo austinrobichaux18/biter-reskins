@@ -16,7 +16,21 @@ local function update_unit(enemy_unit, scale, filesuffix)
     if not enemy_unit then return end
     local unit_type = enemy_unit.name:find("biter") and "biter" or (enemy_unit.name:find("spitter") and "spitter" or nil)
 
-    local anim = {
+    local animation_walk = {
+        layers = {
+            {
+                filename = filename,
+                width = 162,
+                height = 162,
+                frame_count = 1,
+                direction_count = 8,
+                line_length = 3,
+                scale = scale_modifier(scale, unit_type .. "-scale-setting")
+            }
+        }
+    }
+
+    local animation_spin = {
         layers = {
             {
                 filename = filename,
@@ -24,14 +38,13 @@ local function update_unit(enemy_unit, scale, filesuffix)
                 height = 162,
                 frame_count = 8,
                 line_length = 3,
-                shift = util.by_pixel(0, 0),
                 scale = scale_modifier(scale, unit_type .. "-scale-setting")
             }
         }
     }
 
-    enemy_unit.attack_parameters.animation = anim
-    enemy_unit.run_animation = anim
+    enemy_unit.run_animation = animation_walk
+    enemy_unit.attack_parameters.animation = animation_spin
 
     -- IMPORTANT: remove vanilla frame sequencing (it causes out-of-range errors)
     enemy_unit.alternative_attacking_frame_sequence = nil

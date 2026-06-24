@@ -10,13 +10,14 @@ local function update_worm(worm, scale, filesuffix)
     local filename = "__enemy-reskins__/graphics/worms/" .. filesuffix
     if not worm then return end
 
-    local anim = {
+    local animation = {
         layers = {
             {
                 filename = filename,
                 width = 128,
                 height = 128,
-                frame_count = 8,
+                frame_count = 1, --if frame_count is 8 and direction_count is not listed, they spin.
+                direction_count = 8,
                 line_length = 3,
                 shift = util.by_pixel(0, 0),
                 scale = scale_modifier(scale, "worm-scale-setting")
@@ -24,17 +25,17 @@ local function update_worm(worm, scale, filesuffix)
         }
     }
 
-    worm.folded_animation = anim
-    worm.preparing_animation = anim
-    worm.prepared_animation = anim
-    worm.folding_animation = anim
-    worm.attacking_animation = anim
-    worm.energy_glow_animation = anim
-    worm.ending_attack_animation = anim
-    worm.starting_attack_animation = anim
-    worm.attack_parameters.animation = anim
-    worm.prepared_alternative_animation = anim
-    
+    worm.folded_animation = animation
+    worm.preparing_animation = animation
+    worm.prepared_animation = animation
+    worm.folding_animation = animation
+    worm.attacking_animation = animation
+    worm.energy_glow_animation = animation
+    worm.ending_attack_animation = animation
+    worm.starting_attack_animation = animation
+    worm.attack_parameters.animation = animation
+    worm.prepared_alternative_animation = animation
+
     -- local corpse = data.raw["corpse"][worm.corpse]
     -- local corpse_animation = {
     --     layers = {
