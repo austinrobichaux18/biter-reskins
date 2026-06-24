@@ -26,7 +26,6 @@ This is a section of things I plan to add to this mod. This section will likely 
 - Possibly add way for players to drop their own sprite sheets/images (of very specific sizes) into a certain folder and the mod pick it up as an option to use 
 
 ### Bugs / Issues
-- Investigate the spinning. Maybe fix
 - fix worm death animation
 
 
