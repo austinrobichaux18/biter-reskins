@@ -21,7 +21,7 @@ function update_worm(worm, scale, filesuffix)
                 filename = filename,
                 width = 128,
                 height = 128,
-                frame_count = 1, 
+                frame_count = 1,
                 direction_count = 8,
                 line_length = 3,
                 shift = util.by_pixel(0, 0),
@@ -40,7 +40,7 @@ function update_worm(worm, scale, filesuffix)
     worm.starting_attack_animation = animation
     worm.attack_parameters.animation = animation
     worm.prepared_alternative_animation = animation
-
+    
     local corpse = data.raw["corpse"][worm.corpse]
     local corpse_animation = {
         layers = {

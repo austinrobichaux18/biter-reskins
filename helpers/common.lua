@@ -31,6 +31,10 @@ end
 
 ---@param biter data.UnitPrototype
 function tint(biter, color, brightness, tint_as_overlay)
+    if (not settings.startup["enable-tint-setting"].value) then
+        return
+    end
+
     if type(brightness) == "boolean" then
         tint_as_overlay = brightness
         brightness = nil
@@ -62,6 +66,9 @@ end
 
 ---@param turret data.TurretPrototype
 function tint_turret(turret, color, brightness, tint_as_overlay)
+    if (not settings.startup["enable-tint-setting"].value) then
+        return
+    end
     if type(brightness) == "boolean" then
         tint_as_overlay = brightness
         brightness = nil
@@ -119,6 +126,9 @@ end
 
 ---@param spawner data.EnemySpawnerPrototype
 function tint_spawner(spawner, color, brightness, tint_as_overlay)
+    if (not settings.startup["enable-tint-setting"].value) then
+        return
+    end
     local final_color = tint_base(color, brightness)
 
     if not spawner or not spawner.graphics_set or not spawner.graphics_set.animations then return end

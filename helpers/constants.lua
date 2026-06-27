@@ -1,4 +1,6 @@
-unit_skins = { 'goblin', 'orc', 'piggy', 'eye', 'default' }
+unit_skins = { "goblin", "orc", "piggy", "eye",
+    "armoured_titan", "attack_titan", "beast_titan", "cart_titan", "colossal_titan",
+    "female_titan", "jaw_titan", "titan_1", "titan_2", "war_hammer_titan" }
 
 biter_default_skin_small_biter = "goblin"
 biter_default_skin_medium_biter = "goblin"
@@ -23,4 +25,3 @@ spawner_skins = { 'grey-tent', 'horn-tent', 'default' }
 
 spawner_default_skin_biter = 'horn-tent'
 spawner_default_skin_spitter = 'grey-tent'
-

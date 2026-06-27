@@ -22,6 +22,7 @@ big_spitter_scale = .6
 behemoth_spitter_scale = .8
 
 ---@param enemy_unit data.UnitPrototype
+---@param filesuffix string
 function update_unit(enemy_unit, scale, filesuffix)
     local filename = "__enemy-reskins__/graphics/units/" .. filesuffix
     if not enemy_unit then return end
@@ -60,12 +61,17 @@ function update_unit(enemy_unit, scale, filesuffix)
     -- IMPORTANT: remove vanilla frame sequencing (it causes out-of-range errors)
     enemy_unit.alternative_attacking_frame_sequence = nil
 
+    local corpse_file_name = filename:gsub("%.png$", "_corpse.png")
+    if filesuffix:find("titan") then
+        corpse_file_name = filename:gsub("[^/\\]+%.png$", "titan_corpse.png")
+    end
+
     local corpse = data.raw["corpse"][enemy_unit.corpse]
     local corpse_animation = {
         layers = {
             {
                 --replace the .png part with _corpse.png
-                filename = filename:gsub("%.png$", "_corpse.png"),
+                filename = corpse_file_name,
                 width = 128,
                 height = 128,
                 frame_count = 1,

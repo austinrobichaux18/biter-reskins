@@ -7,6 +7,13 @@ data:extend({
         setting_type = "runtime-global",
         default_value = true,
         order = "a"
+    },
+    {
+        type = "bool-setting",
+        name = "enable-tint-setting",
+        setting_type = "startup",
+        default_value = true,
+        order = "a"
     }
 })
 
